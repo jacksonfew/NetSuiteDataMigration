@@ -1,5 +1,6 @@
 from General import excel_list, excelcreate
 from Projects import pmapdic
+import datetime as dt
 
 
 def transform(ext, mapdic):
@@ -35,13 +36,33 @@ def transform(ext, mapdic):
 
     return full
 
+
 if __name__ == '__main__':
     folder = 'C:\\Users\\jfew\\OneDrive - Allbridge\\NetSuite Integration\\Sales Orders 1.6.20\\'
-    file = 'Scenario 9.xlsx'
+    # file = 'Scenario 7 1.16.20 Part 1.xlsx'
+    file = 'Scenario 7 1.16.20 Split.xlsx'
 
+
+    multi = True
+    num = 5
+
+
+
+    if multi == True:
+        comsheet = 'Sheet' + str(num)
+        tsheet = 'Transform' + str(num)
+    else:
+        comsheet = 'Combine'
+        tsheet = 'Transform'
+
+    print('Start - ', dt.datetime.now())
     mapping = pmapdic(excel_list('SO Mapping.xlsx', 'Mapping', folder))
-    data = excel_list(file, 'Combine', folder)
+    print('Mapping - ', dt.datetime.now())
+    data = excel_list(file, comsheet, folder)
+    print('Data - ', dt.datetime.now())
 
     tran = transform(data, mapping)
+    print('Transform - ', dt.datetime.now())
 
-    excelcreate(tran, file, 'Transform', folder)
+    excelcreate(tran, file, tsheet, folder)
+    print('Finish - ', dt.datetime.now())
