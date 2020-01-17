@@ -383,7 +383,8 @@ def owner(data, owndata):
 if __name__ == '__main__':
     folder = 'C:\\Users\jfew\OneDrive - Allbridge\\Netsuite Projects\\'
     mapping = 'Project and Milestone Mapping.xlsx'
-    extract = 'Extract 12.31.19.xlsx'
+    # extract = 'Extract 12.31.19.xlsx'
+    extract = 'Extract 1.17.20.xlsx'
     writefile = 'Milestone Transform.xlsx'
 
     data = excel_list(extract, 'Milestones', folder)
@@ -395,7 +396,7 @@ if __name__ == '__main__':
     print(milestonedics[0])
     print(milestonedics[1]['Headend']['PTR'])
 
-    test = True
+    test = False
 
 
     projlookup = projectInternalID(excel_list('NetSuite Projects.xlsx', 'Projects', folder), test)
